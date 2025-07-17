@@ -2682,16 +2682,57 @@ button {
 /* Page header responsive */
 @media screen and (max-width: 992px) {
   .page-header {
-    min-height: 35vh;
+    min-height: 30vh;
     padding-top: calc(var(--header-height) + 1.5rem);
+    padding-bottom: 2rem;
   }
   
   .page-header__title {
     font-size: var(--h1-font-size);
+    margin-bottom: var(--mb-0-75);
   }
   
   .page-header__subtitle {
     font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-1-5);
+  }
+  
+  .breadcrumb {
+    font-size: var(--small-font-size);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .page-header {
+    min-height: 25vh;
+    padding-top: calc(var(--header-height) + 1rem);
+    padding-bottom: 1.5rem;
+  }
+  
+  .page-header__content {
+    padding: 0 1rem;
+  }
+  
+  .page-header__title {
+    font-size: var(--h2-font-size);
+    margin-bottom: var(--mb-0-5);
+    line-height: 1.1;
+  }
+  
+  .page-header__title .highlight {
+    padding: 0.1rem 0.3rem;
+    font-size: 0.9em;
+  }
+  
+  .page-header__subtitle {
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-1);
+    opacity: 0.9;
+  }
+  
+  .breadcrumb {
+    font-size: var(--smaller-font-size);
+    gap: 0.25rem;
   }
 }
 
@@ -3059,6 +3100,37 @@ button {
   .skill-courses__container,
   .stories__container {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .category__card {
+    padding: 1.5rem;
+    margin: 0 auto;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .category__icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--mb-0-75);
+  }
+  
+  .category__card h3 {
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-75);
+  }
+  
+  .category__card p {
+    font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-1);
+    line-height: 1.5;
+  }
+  
+  .category__count {
+    padding: 0.5rem 1rem;
+    font-size: var(--small-font-size);
+    border-radius: 1.5rem;
+    font-weight: var(--font-semi-bold);
   }
   
   .eligibility__container {
@@ -3446,13 +3518,14 @@ button {
   }
   
   .floating-whatsapp {
-    bottom: 1.5rem;
-    right: 1.5rem;
-    width: 4rem;
-    height: 4rem;
-    font-size: 1.5rem;
-    box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-    border: 3px solid var(--white-color);
+    bottom: 1rem;
+    right: 1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    border: 2px solid var(--white-color);
+    z-index: 1000;
   }
   
   .floating-whatsapp:hover {
@@ -3535,6 +3608,22 @@ button {
     padding-right: 0.75rem;
   }
   
+  .page-header {
+    min-height: 20vh;
+    padding-top: calc(var(--header-height) + 0.75rem);
+    padding-bottom: 1rem;
+  }
+  
+  .page-header__title {
+    font-size: var(--h3-font-size);
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header__subtitle {
+    font-size: var(--smaller-font-size);
+    margin-bottom: 0.75rem;
+  }
+  
   .home {
     padding-top: calc(var(--header-height) + 0.5rem);
   }
@@ -3606,16 +3695,18 @@ button {
 @media screen and (max-width: 768px) {
   /* Reduce animations on mobile to improve performance */
   .course__card,
-  .center__card {
+  .center__card,
+  .category__card {
     animation-duration: 0.4s;
   }
   
   /* Optimize background effects */
-  .home::before {
-    display: none;
+  .home::before,
+  .page-header::before {
+    opacity: 0.5;
   }
   
-  /* Simplify gradients for better performance */
+  /* Simplify gradients for better performance on mobile */
   .btn--primary {
     background: var(--primary-color);
   }
@@ -3624,17 +3715,34 @@ button {
     background: var(--secondary-color);
   }
   
+  .category__count {
+    background: var(--primary-color);
+  }
+  
   /* Reduce shadow complexity */
   .course__card,
   .center__card,
-  .contact__form {
+  .contact__form,
+  .category__card {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   }
   
   /* Optimize transforms */
   .course__card:hover,
-  .center__card:hover {
+  .center__card:hover,
+  .category__card:hover {
     transform: translateY(-2px);
+  }
+  
+  /* Better mobile typography */
+  .section__title {
+    font-size: var(--h2-font-size);
+    line-height: 1.2;
+  }
+  
+  /* Improved spacing for mobile */
+  .section {
+    padding: 2.5rem 0 1.5rem;
   }
 }
 
@@ -3745,6 +3853,53 @@ button {
   .courses__action {
     margin-top: 2.5rem;
     padding: 0 1rem;
+  }
+  
+  /* Course categories mobile optimization */
+  .course-categories {
+    padding: 3rem 0 2rem;
+  }
+  
+  .categories__container {
+    gap: 1.25rem;
+    margin-top: var(--mb-1-5);
+  }
+  
+  .category__card {
+    padding: 1.25rem 1rem;
+    border-radius: 0.75rem;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .category__card:hover {
+    transform: translateY(-3px);
+  }
+  
+  .category__icon {
+    font-size: 2.25rem;
+    margin-bottom: var(--mb-0-5);
+  }
+  
+  .category__card h3 {
+    font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-0-5);
+    font-weight: var(--font-semi-bold);
+  }
+  
+  .category__card p {
+    font-size: var(--small-font-size);
+    margin-bottom: var(--mb-0-75);
+    line-height: 1.4;
+    color: var(--text-light);
+  }
+  
+  .category__count {
+    padding: 0.375rem 0.75rem;
+    font-size: var(--smaller-font-size);
+    border-radius: 1rem;
+    font-weight: var(--font-bold);
+    letter-spacing: 0.5px;
   }
 }
 
