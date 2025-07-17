@@ -4,7 +4,8 @@
       "Bash(open index.html)",
       "WebFetch(domain:kk-computers.in)",
       "Bash(mkdir:*)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(grep:*)"
     ],
     "deny": []
   }

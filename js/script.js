@@ -65,6 +65,18 @@ class GalleryFilter {
         });
     }
 }
+
+/*===== CAROUSEL FUNCTIONALITY =====*/
+class Carousel {
+    constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.carousel__slide');
+        this.indicators = document.querySelectorAll('.carousel__indicator');
+        this.prevBtn = document.querySelector('.carousel__btn--prev');
+        this.nextBtn = document.querySelector('.carousel__btn--next');
+        this.autoPlayInterval = null;
+        this.init();
+    }
     
     init() {
         if (this.slides.length === 0) return;
@@ -559,6 +571,7 @@ function throttle(func, limit) {
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     new GalleryFilter();
+    new Carousel();
     new ContactForm();
     
     // Setup scroll-based features
