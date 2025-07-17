@@ -72,6 +72,40 @@
   }
 }
 
+@media screen and (max-width: 768px) {
+  :root {
+    --biggest-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.375rem;
+    --h3-font-size: 1.125rem;
+    --normal-font-size: 0.95rem;
+    --header-height: 3rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  :root {
+    --biggest-font-size: 1.75rem;
+    --h1-font-size: 1.375rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1rem;
+    --normal-font-size: 0.9rem;
+    --small-font-size: 0.8rem;
+    --header-height: 2.75rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  :root {
+    --biggest-font-size: 1.5rem;
+    --h1-font-size: 1.25rem;
+    --h2-font-size: 1.125rem;
+    --h3-font-size: 0.95rem;
+    --normal-font-size: 0.85rem;
+    --small-font-size: 0.75rem;
+  }
+}
+
 /* ===== BASE ===== */
 * {
   box-sizing: border-box;
@@ -129,12 +163,47 @@ button {
   padding-right: 1rem;
 }
 
+/* Enhanced Mobile Container */
+@media screen and (max-width: 768px) {
+  .container {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .container {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
+}
+
 .grid {
   display: grid;
 }
 
 .section {
   padding: 5rem 0 2rem;
+}
+
+/* Enhanced Mobile Sections */
+@media screen and (max-width: 768px) {
+  .section {
+    padding: 3rem 0 1.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .section {
+    padding: 2.5rem 0 1.25rem;
+  }
 }
 
 .section__title {
@@ -181,6 +250,37 @@ button {
   position: relative;
   overflow: hidden;
   font-size: var(--small-font-size);
+  min-height: 44px; /* Minimum touch target size */
+  min-width: 44px;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 768px) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: var(--smaller-font-size);
+    min-height: 48px; /* Larger touch targets on mobile */
+    min-width: 48px;
+  }
+  
+  .btn--small {
+    padding: 0.5rem 1rem;
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .btn {
+    padding: 0.875rem 1.25rem;
+    font-size: var(--smaller-font-size);
+    letter-spacing: 0.25px;
+  }
+  
+  .btn--full {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
 }
 
 .btn--primary {
@@ -296,6 +396,8 @@ button {
 .nav__toggle,
 .nav__close {
   display: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* ===== NAVIGATION CTA ===== */
@@ -389,6 +491,31 @@ button {
   animation: fadeInUp 0.8s ease 0.4s forwards;
 }
 
+/* Enhanced Mobile Stats */
+@media screen and (max-width: 768px) {
+  .home__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+    margin: var(--mb-2) 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin: var(--mb-1-5) 0;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .home__stats {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    text-align: center;
+  }
+}
+
 .stat__item {
   text-align: center;
   padding: 1.5rem;
@@ -477,6 +604,29 @@ button {
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.8s ease 0.6s forwards;
+}
+
+/* Enhanced Mobile Buttons */
+@media screen and (max-width: 768px) {
+  .home__buttons {
+    flex-direction: column;
+    gap: 0.875rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .home__buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .home__buttons {
+    gap: 0.75rem;
+    max-width: 280px;
+  }
 }
 
 /* ===== CERTIFICATIONS ===== */
@@ -2830,7 +2980,7 @@ button {
   }
 }
 
-/* Medium devices */
+/* Enhanced Mobile Navigation */
 @media screen and (max-width: 768px) {
   .nav__menu {
     position: fixed;
@@ -2843,6 +2993,9 @@ button {
     border-radius: 1.5rem 0 0 1.5rem;
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1000;
     backdrop-filter: blur(10px);
     z-index: var(--z-modal);
   }
@@ -2893,6 +3046,9 @@ button {
     color: var(--text-color);
     border-radius: 50%;
     background: var(--light-gray);
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    z-index: 1001;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4407,4 +4563,342 @@ button {
   font-weight: var(--font-semi-bold);
   text-transform: uppercase;
   letter-spacing: 1px;
+}
+
+/* ===== COMPREHENSIVE MOBILE OPTIMIZATIONS ===== */
+
+/* Course Cards Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .courses__container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 0 0.5rem;
+  }
+  
+  .course__card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .course__header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+  }
+  
+  .course__icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .course__title {
+    font-size: var(--h3-font-size);
+    text-align: center;
+  }
+  
+  .course__description {
+    text-align: center;
+    font-size: var(--small-font-size);
+    line-height: 1.5;
+  }
+  
+  .course__details {
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+}
+
+/* About Section Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .about__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .about__content {
+    order: 2;
+  }
+  
+  .about__image {
+    order: 1;
+    justify-self: center;
+  }
+  
+  .about__img {
+    max-width: 280px;
+    height: auto;
+  }
+  
+  .about__features {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .feature__item {
+    text-align: center;
+    padding: 1rem;
+  }
+}
+
+/* Centers Grid Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .centers__container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .center__card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+  
+  .center__img {
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
+/* Footer Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .footer__content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .footer__section {
+    padding: 1rem 0;
+  }
+  
+  .footer__logo {
+    justify-content: center;
+  }
+  
+  .footer__social {
+    justify-content: center;
+  }
+  
+  .footer__cert-logos {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* CTA Section Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .cta__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  
+  .cta__content {
+    order: 1;
+  }
+  
+  .cta__stats {
+    order: 2;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .cta__buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .cta__buttons .btn {
+    width: 100%;
+  }
+}
+
+/* Certifications Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .certifications__logos {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    justify-items: center;
+  }
+  
+  .cert__logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .certifications__logos {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .cert__logo {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+/* Enhanced Touch Interactions */
+@media screen and (max-width: 768px) {
+  /* Remove hover effects that don't work on touch */
+  .course__card:hover {
+    transform: none;
+  }
+  
+  .btn:hover {
+    transform: none;
+  }
+  
+  /* Add active states for better touch feedback */
+  .btn:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  .course__card:active {
+    transform: scale(0.99);
+    transition: transform 0.1s ease;
+  }
+  
+  .nav__link:active {
+    background: rgba(211, 47, 47, 0.1);
+  }
+}
+
+/* Floating WhatsApp Button Mobile Enhancement */
+@media screen and (max-width: 768px) {
+  .floating-whatsapp {
+    width: 56px;
+    height: 56px;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .floating-whatsapp {
+    width: 52px;
+    height: 52px;
+    bottom: 16px;
+    right: 16px;
+    font-size: 1.4rem;
+  }
+}
+
+/* Performance Optimizations for Mobile */
+@media screen and (max-width: 768px) {
+  /* Reduce animations for better performance */
+  .course__card,
+  .center__card,
+  .category__card {
+    animation-duration: 0.3s;
+  }
+  
+  /* Optimize image loading */
+  img {
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  
+  /* Ensure smooth scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Small Mobile Devices */
+@media screen and (max-width: 390px) {
+  .home__title {
+    font-size: var(--h1-font-size);
+    line-height: 1.3;
+  }
+  
+  .home__description {
+    font-size: var(--small-font-size);
+    line-height: 1.5;
+  }
+  
+  .section__title {
+    font-size: var(--h2-font-size);
+  }
+  
+  .course__card {
+    padding: 1.25rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: var(--smaller-font-size);
+  }
+}
+
+/* Landscape Orientation on Mobile */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  .home__container {
+    min-height: 80vh;
+  }
+  
+  .section {
+    padding: 2rem 0 1rem;
+  }
+  
+  .home__stats {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* Accessibility Improvements for Mobile */
+@media screen and (max-width: 768px) {
+  /* Ensure adequate spacing between interactive elements */
+  .nav__list {
+    row-gap: 0.75rem;
+  }
+  
+  .nav__link {
+    padding: 0.875rem 1rem;
+    font-size: var(--small-font-size);
+  }
+  
+  /* Improve focus indicators */
+  .btn:focus,
+  .nav__link:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
+  
+  /* Improve text readability */
+  p {
+    line-height: 1.6;
+  }
+  
+  .course__description {
+    line-height: 1.5;
+  }
+}
+
+/* Dark Mode Support for Mobile */
+@media screen and (max-width: 768px) and (prefers-color-scheme: dark) {
+  .nav__menu {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #ffffff;
+  }
+  
+  .nav__link {
+    color: #ffffff;
+  }
+  
+  .nav__close {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
