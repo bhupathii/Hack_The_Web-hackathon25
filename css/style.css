@@ -1337,11 +1337,11 @@ button {
 
 /* ===== SKILL COURSES ===== */
 .skill-courses {
-  background: var(--light-gray);
+  background: var(--white-color);
 }
 
 .skill-courses__container {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: var(--mb-2);
 }
@@ -1356,6 +1356,7 @@ button {
   display: flex;
   flex-direction: column;
   height: 100%;
+  max-width: 100%;
 }
 
 .skill-course__card:hover {
@@ -1365,9 +1366,9 @@ button {
 }
 
 .skill-course__header {
-  padding: 1.5rem;
-  text-align: center;
+  padding: 1.5rem 1rem;
   background: var(--light-gray);
+  text-align: center;
   border-bottom: 1px solid var(--border-color);
   display: flex;
   flex-direction: column;
@@ -1383,18 +1384,20 @@ button {
 
 .skill-course__card:hover .skill-course__icon {
   color: var(--secondary-color);
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .skill-course__header h3 {
   color: var(--text-color);
-  font-size: var(--h3-font-size);
+  font-size: var(--normal-font-size);
+  text-align: center;
   margin: 0;
+  line-height: 1.3;
   font-weight: var(--font-semi-bold);
 }
 
 .skill-course__content {
-  padding: 1.5rem;
+  padding: 1.5rem 1rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -1404,14 +1407,14 @@ button {
 .skill-course__content p {
   color: var(--text-light);
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-size: var(--small-font-size);
 }
 
 .skill-course__programs {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
 }
 
@@ -1429,7 +1432,7 @@ button {
 
 .program__item h4 {
   color: var(--text-color);
-  font-size: var(--small-font-size);
+  font-size: var(--smaller-font-size);
   font-weight: var(--font-medium);
   margin: 0;
 }
@@ -2406,12 +2409,14 @@ button {
 
 /* Scheme cards responsive */
 @media screen and (max-width: 992px) {
-  .schemes__container {
+  .schemes__container,
+  .skill-courses__container {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.25rem;
   }
   
-  .scheme__header {
+  .scheme__header,
+  .skill-course__header {
     padding: 1.25rem 1rem;
   }
   
@@ -2420,18 +2425,25 @@ button {
     height: 45px;
   }
   
-  .scheme__content {
+  .skill-course__icon {
+    font-size: 2.25rem;
+  }
+  
+  .scheme__content,
+  .skill-course__content {
     padding: 1.25rem 1rem;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .schemes__container {
+  .schemes__container,
+  .skill-courses__container {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
   
-  .scheme__header {
+  .scheme__header,
+  .skill-course__header {
     padding: 1rem 0.75rem;
   }
   
@@ -2440,24 +2452,18 @@ button {
     height: 40px;
   }
   
-  .scheme__header h3 {
-    font-size: var(--small-font-size);
-  }
-  
-  .scheme__content {
-    padding: 1rem 0.75rem;
-  }
-  
-  .skill-course__header {
-    padding: 1.25rem;
-  }
-  
   .skill-course__icon {
     font-size: 2rem;
   }
   
+  .scheme__header h3,
+  .skill-course__header h3 {
+    font-size: var(--small-font-size);
+  }
+  
+  .scheme__content,
   .skill-course__content {
-    padding: 1.25rem;
+    padding: 1rem 0.75rem;
   }
   
   .eligibility__section {
