@@ -2687,32 +2687,6 @@ button {
   font-weight: var(--font-medium);
 }
 
-/* ===== SCROLL UP ===== */
-.scrollup {
-  position: fixed;
-  right: 2rem;
-  bottom: -20%;
-  background: var(--gradient-primary);
-  color: var(--white-color);
-  width: 3rem;
-  height: 3rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: var(--transition-fast);
-  z-index: var(--z-tooltip);
-  box-shadow: var(--shadow-medium);
-}
-
-.scrollup:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-large);
-}
-
-.show-scroll {
-  bottom: 7rem;
-}
 
 /* ===== FLOATING WHATSAPP ===== */
 .floating-whatsapp {
@@ -3262,16 +3236,6 @@ button {
     font-size: 1.25rem;
   }
   
-  .scrollup {
-    bottom: 2rem;
-    width: 2.5rem;
-    height: 2.5rem;
-    right: 1.5rem;
-  }
-  
-  .show-scroll {
-    bottom: 6rem;
-  }
 }
 
 /* Extra small devices */
@@ -3623,8 +3587,7 @@ button {
   .header,
   .nav,
   .btn,
-  .floating-whatsapp,
-  .scrollup {
+  .floating-whatsapp {
     display: none !important;
   }
   

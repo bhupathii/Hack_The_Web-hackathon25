@@ -165,12 +165,6 @@ function scrollActive() {
     });
 }
 
-/*===== SHOW SCROLL UP =====*/
-function scrollUp() {
-    const scrollUp = document.getElementById('scroll-up');
-    if (this.scrollY >= 560) scrollUp.classList.add('show-scroll');
-    else scrollUp.classList.remove('show-scroll');
-}
 
 /*===== SMOOTH SCROLLING =====*/
 function setupSmoothScrolling() {
@@ -658,10 +652,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add scroll event listeners with throttling
     const throttledScrollActive = throttle(scrollActive, 100);
-    const throttledScrollUp = throttle(scrollUp, 100);
     
     window.addEventListener('scroll', throttledScrollActive);
-    window.addEventListener('scroll', throttledScrollUp);
     
     // Handle form reset button
     const resetButton = document.createElement('button');
