@@ -2690,7 +2690,7 @@ button {
 /* ===== SCROLL UP ===== */
 .scrollup {
   position: fixed;
-  right: 1rem;
+  right: 2rem;
   bottom: -20%;
   background: var(--gradient-primary);
   color: var(--white-color);
@@ -2711,7 +2711,7 @@ button {
 }
 
 .show-scroll {
-  bottom: 3rem;
+  bottom: 7rem;
 }
 
 /* ===== FLOATING WHATSAPP ===== */
@@ -2729,7 +2729,7 @@ button {
   color: var(--white-color);
   font-size: 1.5rem;
   box-shadow: var(--shadow-large);
-  z-index: var(--z-fixed);
+  z-index: var(--z-modal);
   transition: all 0.3s ease;
   animation: pulse 2s infinite;
 }
@@ -3266,6 +3266,11 @@ button {
     bottom: 2rem;
     width: 2.5rem;
     height: 2.5rem;
+    right: 1.5rem;
+  }
+  
+  .show-scroll {
+    bottom: 6rem;
   }
 }
 
