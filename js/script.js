@@ -656,16 +656,20 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', throttledScrollActive);
     
     // Handle form reset button
-    const resetButton = document.createElement('button');
-    resetButton.type = 'button';
-    resetButton.textContent = 'Reset';
-    resetButton.className = 'btn btn--secondary btn--small';
-    resetButton.style.marginLeft = '1rem';
-    
     const contactForm = document.getElementById('contact-form');
     const submitButton = contactForm?.querySelector('button[type="submit"]');
     
     if (submitButton && contactForm) {
+        // Create button container
+        const buttonContainer = document.createElement('div');
+        buttonContainer.className = 'form__button-group';
+        
+        // Create reset button
+        const resetButton = document.createElement('button');
+        resetButton.type = 'button';
+        resetButton.innerHTML = '<i class="fas fa-undo"></i> RESET';
+        resetButton.className = 'btn btn--secondary btn--form-action';
+        
         resetButton.addEventListener('click', () => {
             contactForm.reset();
             const errorMessages = contactForm.querySelectorAll('.error-message');
@@ -676,7 +680,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        submitButton.parentNode.insertBefore(resetButton, submitButton.nextSibling);
+        // Update submit button class and text
+        submitButton.innerHTML = '<i class="fas fa-paper-plane"></i> SEND MESSAGE';
+        submitButton.className = 'btn btn--primary btn--form-action';
+        
+        // Wrap buttons in container
+        submitButton.parentNode.insertBefore(buttonContainer, submitButton);
+        buttonContainer.appendChild(submitButton);
+        buttonContainer.appendChild(resetButton);
     }
     
     // Console welcome message
