@@ -1876,101 +1876,56 @@ button {
   }
 }
 
-/* Tablet and Mobile devices */
+/* Medium devices */
 @media screen and (max-width: 768px) {
   .nav__menu {
     position: fixed;
     background-color: var(--white-color);
-    width: 85%;
+    width: 80%;
     height: 100vh;
     top: 0;
     right: -100%;
     padding: 4rem 0 0 3rem;
     border-radius: 1rem 0 0 1rem;
-    transition: right 0.4s ease-in-out;
+    transition: var(--transition-fast);
     box-shadow: var(--shadow-large);
-    z-index: var(--z-modal);
-    overflow-y: auto;
   }
   
   .show-menu {
-    right: 0 !important;
+    right: 0;
   }
   
   .nav__list {
     flex-direction: column;
-    row-gap: 2rem;
-    margin-top: 1rem;
-  }
-  
-  .nav__link {
-    font-size: 1.1rem;
-    font-weight: var(--font-medium);
-    padding: 0.75rem 0;
-    display: block;
-    border-bottom: 1px solid var(--border-color);
-    transition: var(--transition-fast);
-  }
-  
-  .nav__link:hover {
-    color: var(--primary-color);
-    transform: translateX(5px);
+    row-gap: 1.5rem;
   }
   
   .nav__close {
     position: absolute;
-    top: 1rem;
-    right: 1.5rem;
+    top: 0.75rem;
+    right: 1.3rem;
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--text-color);
-    padding: 0.5rem;
-    border-radius: 50%;
-    transition: var(--transition-fast);
   }
   
   .nav__close:hover {
     color: var(--primary-color);
-    background-color: var(--light-gray);
   }
   
   .nav__toggle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     cursor: pointer;
     color: var(--text-color);
-    padding: 0.5rem;
-    border-radius: 0.25rem;
-    transition: var(--transition-fast);
-    z-index: var(--z-fixed);
-    position: relative;
   }
   
   .nav__toggle:hover {
     color: var(--primary-color);
-    background-color: var(--light-gray);
   }
   
   .nav__toggle,
   .nav__close {
     display: block;
-  }
-  
-  /* Add backdrop for mobile menu */
-  .nav__menu::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  
-  .show-menu::before {
-    opacity: 1;
   }
   
   .home__stats {
@@ -1993,42 +1948,6 @@ button {
   
   .certifications__logos {
     gap: 1rem;
-  }
-}
-
-/* Extra small devices (phones) */
-@media screen and (max-width: 480px) {
-  .nav__menu {
-    width: 90%;
-    padding: 3rem 0 0 2rem;
-  }
-  
-  .nav__toggle {
-    font-size: 1.3rem;
-  }
-  
-  .nav__close {
-    top: 0.5rem;
-    right: 1rem;
-    font-size: 1.3rem;
-  }
-  
-  .nav__link {
-    font-size: 1rem;
-    padding: 1rem 0;
-  }
-  
-  .nav__logo-img {
-    height: 2rem;
-  }
-  
-  .header {
-    padding: 0 1rem;
-  }
-  
-  .container {
-    margin-left: 1rem;
-    margin-right: 1rem;
   }
   
   .cert__logo {
