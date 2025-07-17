@@ -3011,8 +3011,6 @@ button {
     box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    z-index: 1000;
-    backdrop-filter: blur(10px);
     z-index: var(--z-modal);
   }
   
@@ -3105,7 +3103,7 @@ button {
     display: flex;
   }
   
-  /* Mobile menu overlay */
+  /* Mobile menu overlay - Fixed to prevent unwanted overlay */
   .nav__menu::before {
     content: '';
     position: fixed;
@@ -3116,10 +3114,15 @@ button {
     background: rgba(0, 0, 0, 0.3);
     transition: all 0.3s ease;
     z-index: -1;
+    opacity: 0;
+    visibility: hidden;
   }
   
   .show-menu::before {
     left: 0;
+    opacity: 1;
+    visibility: visible;
+    z-index: 999;
   }
   
   .home__stats {
@@ -5027,5 +5030,54 @@ button {
   .container {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
+  }
+}
+
+/* ===== OVERLAY FIX FOR MOBILE NAVIGATION ===== */
+/* Ensure overlay is completely hidden when menu is closed */
+@media screen and (max-width: 768px) {
+  .nav__menu:not(.show-menu)::before {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    z-index: -1 !important;
+    pointer-events: none !important;
+    display: none !important;
+  }
+  
+  /* Ensure no unwanted backdrop interference */
+  .nav__menu {
+    backdrop-filter: none;
+  }
+  
+  .nav__menu.show-menu {
+    backdrop-filter: blur(10px);
+  }
+  
+  /* Prevent any overlay bleeding through */
+  body:not(.menu-open) .nav__menu::before {
+    display: none !important;
+  }
+  
+  /* Additional overlay prevention */
+  .nav__menu {
+    position: fixed;
+    z-index: var(--z-modal);
+  }
+  
+  .nav__menu:not(.show-menu) {
+    z-index: -1;
+  }
+  
+  /* Ensure main content is not affected by overlay */
+  .main {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Reset any unwanted transforms or filters */
+  body:not(.menu-open) .nav__menu {
+    transform: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
   }
 }

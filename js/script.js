@@ -9,6 +9,8 @@ if (navToggle) {
     navToggle.addEventListener('click', (e) => {
         e.preventDefault();
         navMenu.classList.add('show-menu');
+        // Add class to body for overlay management
+        document.body.classList.add('menu-open');
         // Prevent body scroll when menu is open
         document.body.style.overflow = 'hidden';
         // Focus management for accessibility
@@ -49,6 +51,8 @@ if (navClose) {
 // Enhanced menu close function
 function closeMenu() {
     navMenu.classList.remove('show-menu');
+    // Remove class from body for overlay management
+    document.body.classList.remove('menu-open');
     // Restore body scroll
     document.body.style.overflow = '';
     // Return focus to toggle button
