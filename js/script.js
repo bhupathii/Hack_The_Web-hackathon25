@@ -559,6 +559,69 @@ function setupPerformanceOptimizations() {
     });
 }
 
+/*===== IMAGE ERROR HANDLING & DEFAULT AVATARS =====*/
+function setupImageErrorHandling() {
+    // Handle broken images and create default avatars
+    const profileImages = document.querySelectorAll('.story__img, .team__img');
+    
+    profileImages.forEach(img => {
+        // Add error handler
+        img.addEventListener('error', function() {
+            createDefaultAvatar(this);
+        });
+        
+        // Check if image exists and is loaded
+        if (img.complete && img.naturalHeight === 0) {
+            createDefaultAvatar(img);
+        }
+    });
+    
+    // Handle all other images for responsive behavior
+    const allImages = document.querySelectorAll('img');
+    allImages.forEach(img => {
+        img.addEventListener('error', function() {
+            if (!this.classList.contains('story__img') && !this.classList.contains('team__img')) {
+                this.style.display = 'none';
+            }
+        });
+    });
+}
+
+function createDefaultAvatar(imgElement) {
+    const altText = imgElement.alt || 'User';
+    const initials = getInitials(altText);
+    
+    // Create a div to replace the image
+    const avatarDiv = document.createElement('div');
+    avatarDiv.className = imgElement.className + ' default-avatar';
+    avatarDiv.textContent = initials;
+    avatarDiv.style.cssText = `
+        width: ${imgElement.offsetWidth || 60}px;
+        height: ${imgElement.offsetHeight || 60}px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+        color: var(--white-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        border: 3px solid var(--primary-color);
+        flex-shrink: 0;
+    `;
+    
+    // Replace the image with the avatar
+    imgElement.parentNode.replaceChild(avatarDiv, imgElement);
+}
+
+function getInitials(name) {
+    return name
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase())
+        .slice(0, 2)
+        .join('');
+}
+
 /*===== ACCESSIBILITY ENHANCEMENTS =====*/
 function setupAccessibility() {
     // Skip to main content link
@@ -648,6 +711,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupLandingPageAnimations();
     setupHeaderScroll();
     setupPerformanceOptimizations();
+    setupImageErrorHandling();
     setupAccessibility();
     
     // Add scroll event listeners with throttling
