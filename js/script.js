@@ -438,6 +438,80 @@ function setupScrollAnimations() {
     });
 }
 
+/*===== ENHANCED LANDING PAGE ANIMATIONS =====*/
+function setupLandingPageAnimations() {
+    // Certificate logos animation on scroll
+    const certLogos = document.querySelectorAll('.cert__logo');
+    
+    const certObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+                certObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+    
+    certLogos.forEach(logo => {
+        logo.style.animationPlayState = 'paused';
+        certObserver.observe(logo);
+    });
+    
+    // Number counting animation for stats
+    const statNumbers = document.querySelectorAll('.stat__item h3');
+    
+    const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+                const finalValue = target.textContent;
+                const isPercentage = finalValue.includes('%');
+                const isPlus = finalValue.includes('+');
+                let numValue = parseInt(finalValue.replace(/[^\d]/g, ''));
+                
+                if (numValue) {
+                    animateCount(target, 0, numValue, isPercentage, isPlus);
+                }
+                
+                statsObserver.unobserve(target);
+            }
+        });
+    }, {
+        threshold: 0.5
+    });
+    
+    statNumbers.forEach(stat => {
+        statsObserver.observe(stat);
+    });
+}
+
+function animateCount(element, start, end, isPercentage, isPlus) {
+    const duration = 2000;
+    const startTime = performance.now();
+    
+    function updateCount(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+        const current = Math.floor(start + (end - start) * easeOutQuart);
+        
+        let displayValue = current.toString();
+        if (isPercentage) displayValue += '%';
+        if (isPlus) displayValue += '+';
+        
+        element.textContent = displayValue;
+        
+        if (progress < 1) {
+            requestAnimationFrame(updateCount);
+        }
+    }
+    
+    requestAnimationFrame(updateCount);
+}
+
 /*===== HEADER SCROLL EFFECT =====*/
 function setupHeaderScroll() {
     const header = document.getElementById('header');
@@ -577,6 +651,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup scroll-based features
     setupSmoothScrolling();
     setupScrollAnimations();
+    setupLandingPageAnimations();
     setupHeaderScroll();
     setupPerformanceOptimizations();
     setupAccessibility();
