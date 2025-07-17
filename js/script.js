@@ -1,100 +1,30 @@
-/*===== ENHANCED MOBILE NAVIGATION =====*/
+/*===== NAVIGATION MENU =====*/
 const navMenu = document.getElementById('nav-menu');
 const navToggle = document.getElementById('nav-toggle');
 const navClose = document.getElementById('nav-close');
+
+// Menu show
+if (navToggle) {
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.add('show-menu');
+    });
+}
+
+// Menu hidden
+if (navClose) {
+    navClose.addEventListener('click', () => {
+        navMenu.classList.remove('show-menu');
+    });
+}
+
+// Remove menu mobile
 const navLinks = document.querySelectorAll('.nav__link');
 
-// Enhanced menu show with mobile optimizations
-if (navToggle) {
-    navToggle.addEventListener('click', (e) => {
-        e.preventDefault();
-        navMenu.classList.add('show-menu');
-        // Add class to body for overlay management
-        document.body.classList.add('menu-open');
-        // Prevent body scroll when menu is open
-        document.body.style.overflow = 'hidden';
-        // Focus management for accessibility
-        navClose.focus();
-    });
-    
-    // Touch optimization
-    navToggle.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        navToggle.style.transform = 'scale(0.95)';
-    });
-    
-    navToggle.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        navToggle.style.transform = 'scale(1)';
-    });
-}
-
-// Enhanced menu hidden with mobile optimizations
-if (navClose) {
-    navClose.addEventListener('click', (e) => {
-        e.preventDefault();
-        closeMenu();
-    });
-    
-    // Touch optimization
-    navClose.addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        navClose.style.transform = 'scale(0.95)';
-    });
-    
-    navClose.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        navClose.style.transform = 'scale(1)';
-    });
-}
-
-// Enhanced menu close function
-function closeMenu() {
-    navMenu.classList.remove('show-menu');
-    // Remove class from body for overlay management
-    document.body.classList.remove('menu-open');
-    // Restore body scroll
-    document.body.style.overflow = '';
-    // Return focus to toggle button
-    navToggle.focus();
-}
-
-// Remove menu mobile with enhanced touch handling
 function linkAction() {
-    closeMenu();
+    const navMenu = document.getElementById('nav-menu');
+    navMenu.classList.remove('show-menu');
 }
-
-// Add enhanced touch events to nav links
-navLinks.forEach(link => {
-    link.addEventListener('click', linkAction);
-    
-    // Enhanced touch feedback
-    link.addEventListener('touchstart', (e) => {
-        link.style.backgroundColor = 'rgba(211, 47, 47, 0.1)';
-    });
-    
-    link.addEventListener('touchend', (e) => {
-        setTimeout(() => {
-            link.style.backgroundColor = '';
-        }, 150);
-    });
-});
-
-// Close menu when clicking outside
-if (navMenu) {
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !navToggle.contains(e.target) && navMenu.classList.contains('show-menu')) {
-            closeMenu();
-        }
-    });
-}
-
-// Close menu with escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('show-menu')) {
-        closeMenu();
-    }
-});
+navLinks.forEach(n => n.addEventListener('click', linkAction));
 
 /*===== GALLERY FILTERING =====*/
 class GalleryFilter {
@@ -705,105 +635,6 @@ function throttle(func, limit) {
     }
 }
 
-/*===== MOBILE PERFORMANCE OPTIMIZATIONS =====*/
-function setupMobileOptimizations() {
-    // Detect mobile device
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    
-    if (isMobile || isTouch) {
-        // Add mobile class for CSS targeting
-        document.body.classList.add('mobile-device');
-        
-        // Disable hover effects on mobile
-        document.body.classList.add('no-hover');
-        
-        // Optimize touch scrolling
-        document.body.style.webkitOverflowScrolling = 'touch';
-        
-        // Prevent zoom on input focus
-        const inputs = document.querySelectorAll('input, textarea, select');
-        inputs.forEach(input => {
-            input.addEventListener('focus', () => {
-                const viewport = document.querySelector('meta[name=viewport]');
-                if (viewport) {
-                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-                }
-            });
-            
-            input.addEventListener('blur', () => {
-                const viewport = document.querySelector('meta[name=viewport]');
-                if (viewport) {
-                    viewport.setAttribute('content', 'width=device-width, initial-scale=1.0');
-                }
-            });
-        });
-        
-        // Enhanced touch feedback for buttons
-        const buttons = document.querySelectorAll('.btn, .nav__link, .course__card');
-        buttons.forEach(button => {
-            button.addEventListener('touchstart', () => {
-                button.style.transform = 'scale(0.98)';
-            });
-            
-            button.addEventListener('touchend', () => {
-                setTimeout(() => {
-                    button.style.transform = '';
-                }, 150);
-            });
-        });
-    }
-}
-
-/*===== VIEWPORT HEIGHT FIX FOR MOBILE =====*/
-function setupViewportHeightFix() {
-    const setViewportHeight = () => {
-        const vh = window.innerHeight * 0.01;
-        document.documentElement.style.setProperty('--vh', `${vh}px`);
-    };
-    
-    setViewportHeight();
-    window.addEventListener('resize', setViewportHeight);
-    window.addEventListener('orientationchange', () => {
-        setTimeout(setViewportHeight, 100);
-    });
-}
-
-/*===== LAZY LOADING ENHANCEMENT =====*/
-function setupEnhancedLazyLoading() {
-    const images = document.querySelectorAll('img');
-    
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                
-                // Add loading indicator
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
-                
-                img.onload = () => {
-                    img.style.opacity = '1';
-                };
-                
-                // Handle data-src for lazy loading
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                }
-                
-                observer.unobserve(img);
-            }
-        });
-    }, {
-        rootMargin: '50px 0px',
-        threshold: 0.1
-    });
-    
-    images.forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
 /*===== INITIALIZATION =====*/
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
@@ -819,13 +650,10 @@ document.addEventListener('DOMContentLoaded', function() {
     setupPerformanceOptimizations();
     setupAccessibility();
     
-    // Setup mobile optimizations
-    setupMobileOptimizations();
-    setupViewportHeightFix();
-    setupEnhancedLazyLoading();
-    
     // Add scroll event listeners with throttling
     const throttledScrollActive = throttle(scrollActive, 100);
+    
+    window.addEventListener('scroll', throttledScrollActive);
     
     // Handle form reset button
     const contactForm = document.getElementById('contact-form');
