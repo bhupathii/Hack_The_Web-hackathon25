@@ -2,23 +2,14 @@
 =====================================================
 
 📂 Git Repository Link:
-[Please add your GitHub repository URL here]
-Example: https://github.com/yourusername/HTW-hackathon
+https://github.com/bhupathii/Hack_The_Web-hackathon25.git
 
 🌐 Live Deployment Link:
 [Please add your deployment URL here]
-Example: https://kk-computers-htw.netlify.app/
+Example: https://kk-computers-in.netlify.app/
 
 📋 Additional Information:
 - Project: KK Computers Website
 - Contest: Hack The Web
 - Technologies: HTML5, CSS3, JavaScript
 - Status: Ready for submission
-
-🚀 Quick Setup Instructions:
-1. Push code to GitHub repository
-2. Deploy to Netlify/Vercel/GitHub Pages
-3. Update this file with actual URLs
-4. Submit to contest
-
-Last Updated: [Date] 
